@@ -20,5 +20,4 @@ Usage:
 * Python Examples: Run the Python scripts to execute CRUD operations.
 * HTML Documentation: Open the HTML document in a web browser for detailed implementation steps and visual references.
 
-License:
-This repository is licensed under [Jotne connect] - see the LICENSE file for details.
+
