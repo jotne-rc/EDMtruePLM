@@ -1,0 +1,11 @@
+server: ****/EDMtruePLM
+token_url: /api/admin/token
+search_url: /api/bkd/q_search_ext
+append_url: /api/bkd/aggr/
+port: 8080
+repository: TruePLMprojectsRep
+model: ****
+credentials:
+  group: sdai-group
+  user: ****
+  pass: ****
