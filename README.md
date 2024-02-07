@@ -9,6 +9,7 @@ Contents:
 Getting Started:
 
 Requirements:
+* Install required libraries using pip 
 * Running EDMtruePLM application
 * A valid user login information 
 
