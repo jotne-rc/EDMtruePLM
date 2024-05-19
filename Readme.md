@@ -193,7 +193,7 @@ For a comprehensive list of available search parameters and detailed API documen
 ![quick_search_params](images/bkd_search_params.png)
 
 ```json
-    search_params = {
+    {
     "case_sens": "false",
     "domains": "ID",
     "folder_only": "true",
@@ -217,26 +217,6 @@ This API method is utilized to search for breakdown elements within a project an
 
 ### Query Parameters
 - **nodeID** (optional): Specifies the exact path within the project's tree to locate the desired breakdown element. If omitted, the response will include all breakdown elements that meet the other specified criteria.
-
-```json
-search_params = {
-        "createAfter": "",    # Search for elements created after a specific date
-        "createBefore": "",   # Search for elements created before a specific date
-        "createUser": "",     # Search for elements created by a specific user
-        "descr": "",          # Description pattern to search for
-        "editAfter": "",      # Search for elements edited after a specific date
-        "editBefore": "",     # Search for elements edited before a specific date
-        "editUser": "",       # Search for elements edited by a specific user
-        "limit": "",          # Limit the number of results returned
-        "nodeID": "",         # Instance ID of the root element to start the search
-        "nodeVer": "",        # Version number to search within
-        "pPhase": "",         # Project phase to include in search
-        "pattern": "SENSORS", # Search pattern for element name
-        "propName": [],       # Property names to search
-        "propVal": [],        # Property values to match
-        "type": ""            # Type pattern to search for
-    }
-```
 
 ### Output
 The output of this function provides detailed attributes of the required breakdown element or all elements satisfying the query, depending on the presence or absence of the `nodeID` parameter.
@@ -367,17 +347,17 @@ The first method takes inputs parameters to get data in required format either C
 file properties as shown in below example.
 
 ```json
-    {'descr': None,
+    {'descr': 'None',
     'source': 'aggr6673349257703198929down',
-    'contentType': None, 
-    'discipline': None, 
-    'projPhase': None, 
-    'status': None, 
-    'editor': None, 
-    'resp': None, 
-    'rev': None, 
-    'app': None, 
-    'revMan': None, 
+    'contentType': 'None', 
+    'discipline': 'None', 
+    'projPhase': 'None', 
+    'status': 'None', 
+    'editor': 'None', 
+    'resp': 'None', 
+    'rev': 'None', 
+    'app': 'None', 
+    'revMan': 'None', 
     'title': 'Accleration_readings_data.csv',
     'isNewIssue': False}
 ```
@@ -430,16 +410,16 @@ The process involves two main steps:
 
 This API method requires the following query parameters to download a required file.
 ```json
-   {    
-     'name': 'sample',      # Name for the document file
-     'ver': '201863484150'  # Instance ID of document version
-   }
+{    
+ 'name': 'sample',      
+ 'ver': '201863484150'
+}
 ```
 The responseof the API call is shown below:
 
 ```json
 
-{'descr': None, 'source': 'trueplm18262775133753724042.sample', 'contentType': None, 'discipline': None, 'projPhase': None, 'status': None, 'editor': None, 'resp': None, 'rev': None, 'app': None, 'revMan': None, 'title': 'sample'}
+{'descr': 'None', 'source': 'trueplm18262775133753724042.sample', 'contentType': 'None', 'discipline': 'None', 'projPhase': 'None', 'status': 'None', 'editor': 'None', 'resp': 'None', 'rev': 'None', 'app': 'None', 'revMan': 'None', 'title': 'sample'}
 ```
 
 ### Step 2: Return file data for download
@@ -502,7 +482,7 @@ Below is the JSON resposne from the document quick search method.
             
           ],
           'phase': 'urn:rdl:epm-std:0',
-          'approval': None
+          'approval': 'None'
         }
       ]}
     }
