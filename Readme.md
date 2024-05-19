@@ -235,7 +235,7 @@ In the below image the user want to delete the **SENSORS 2** breakdown element.
 ![delete_element](images/delete_element.png)
 
 
-In the Python script [`delete_bd_element.py`](/delete_bd_element.py), users will find the necessary code to perform this operation.
+In the Python script [`delete_bd_element.py`](/delete_bkd_element.py), users will find the necessary code to perform this operation.
 
 ---
 
@@ -460,7 +460,7 @@ Below is the JSON resposne from the document quick search method.
       "ass_doc_instance_id": 201863484089,
       "file_body_id": 201863483776,
       "size": 49672,
-      "linked_to_others": False,
+      "linked_to_others": "False",
       "id": "3f3yM05ReHxu000FzqhB2l",
       "description": "test",
       "linked_to_bkdn_elem_instance": 201863484065,
