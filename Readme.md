@@ -4,7 +4,7 @@
 ---
 ---
 
-This document serves as a comprehensive guide to interact with EDMtruePLM's API for various CRUD (Create, Read, Update, Delete) operations. The API examples provided below demonstrate how users can perform these actions efficiently.
+This document serves as a comprehensive guide to interact with EDMtruePLM"s API for various CRUD (Create, Read, Update, Delete) operations. The API examples provided below demonstrate how users can perform these actions efficiently.
 
 1. Generating a Token:
 The first step in interacting with the EDMtruePLM API is to generate an authentication token. This token will be used in subsequent API calls to authenticate the user and grant access to perform operations on the platform.
@@ -42,7 +42,7 @@ The API includes the following methods: `POST`, `GET`, `DELETE`, and `PUT` metho
 - `403`: {"description": "Forbidden"}
 - `404`: {"description": "Not Found"}
 
-**Note:** The JSON responses containing time information from a REST API are expressed in Coordinated Universal Time (UTC). It's essential to be aware of the UTC representation in API responses, especially if your application operates in different time zones.
+**Note:** The JSON responses containing time information from a REST API are expressed in Coordinated Universal Time (UTC). It"s essential to be aware of the UTC representation in API responses, especially if your application operates in different time zones.
 
 ----
 
@@ -125,7 +125,7 @@ Below is an image showing the project as imported after the API execution:
 ![project_import](images/project_import.PNG)
 
 
-## 3. API call for retrieving the project's root break down element
+## 3. API call for retrieving the project"s root break down element
 
 The API endpoint to retrieve the root breakdown element in a project is:
 
@@ -140,7 +140,7 @@ This method requires two key input parameters:
 
 ### Description
 
-When invoked, this API call returns the root breakdown element information for the specified project, providing essential details about the project's structure in EDMtruePLM.In the Pythonscript [`project_root_bkd_element.py`](/project_root_bkd_element.py), users will find the necessary code to perform this operation.
+When invoked, this API call returns the root breakdown element information for the specified project, providing essential details about the project"s structure in EDMtruePLM.In the Pythonscript [`project_root_bkd_element.py`](/project_root_bkd_element.py), users will find the necessary code to perform this operation.
 
 
 ## 4. API call for creating new breakdown element
@@ -153,7 +153,7 @@ This method is utilized in the project to create a new breakdown element within 
 
 ### Usage Details
 
-In this API method, the user needs to specify a path in the form of a node ID. This ensures that the new breakdown element will be created under the specified path. For example, if a user wants to create a new breakdown element named 'SENSORS' under the root node of the project, they would specify the root node's instance ID as the node parameter.
+In this API method, the user needs to specify a path in the form of a node ID. This ensures that the new breakdown element will be created under the specified path. For example, if a user wants to create a new breakdown element named "SENSORS" under the root node of the project, they would specify the root node"s instance ID as the node parameter.
 
 ![new_element](images/create_new_element.png)
 
@@ -216,7 +216,7 @@ This API method is utilized to search for breakdown elements within a project an
 
 
 ### Query Parameters
-- **nodeID** (optional): Specifies the exact path within the project's tree to locate the desired breakdown element. If omitted, the response will include all breakdown elements that meet the other specified criteria.
+- **nodeID** (optional): Specifies the exact path within the project"s tree to locate the desired breakdown element. If omitted, the response will include all breakdown elements that meet the other specified criteria.
 
 ### Output
 The output of this function provides detailed attributes of the required breakdown element or all elements satisfying the query, depending on the presence or absence of the `nodeID` parameter.
@@ -282,7 +282,7 @@ Additionally, the aggregate structure, referred to as "accl_struct", is defined 
 By following these steps, users can effectively manage and customize Breakdown elements within the EDMtruePLM system, enhancing data organization and accessibility.
 
 #### 2. Update User-Defined Properties
-After the Breakdown element is established with the required type, users can then proceed to update the element with corresponding values. It's crucial to ensure the correct units are used when uploading values to each property.
+After the Breakdown element is established with the required type, users can then proceed to update the element with corresponding values. It"s crucial to ensure the correct units are used when uploading values to each property.
 
 In the Python script [`update_bkd_element_properties.py`](/update_bkd_element_properties.py), users will find the necessary code to perform this operation.
 
@@ -347,19 +347,19 @@ The first method takes inputs parameters to get data in required format either C
 file properties as shown in below example.
 
 ```json
-    {'descr': 'None',
-    'source': 'aggr6673349257703198929down',
-    'contentType': 'None', 
-    'discipline': 'None', 
-    'projPhase': 'None', 
-    'status': 'None', 
-    'editor': 'None', 
-    'resp': 'None', 
-    'rev': 'None', 
-    'app': 'None', 
-    'revMan': 'None', 
-    'title': 'Accleration_readings_data.csv',
-    'isNewIssue': False}
+    {"descr": "None",
+    "source": "aggr6673349257703198929down",
+    "contentType": "None", 
+    "discipline": "None", 
+    "projPhase": "None", 
+    "status": "None", 
+    "editor": "None", 
+    "resp": "None", 
+    "rev": "None", 
+    "app": "None", 
+    "revMan": "None", 
+    "title": "Accleration_readings_data.csv",
+    "isNewIssue": "False"}
 ```
 The source and title values are supplied to the second API function from this response.
 
@@ -411,15 +411,15 @@ The process involves two main steps:
 This API method requires the following query parameters to download a required file.
 ```json
 {    
- 'name': 'sample',      
- 'ver': '201863484150'
+ "name": "sample",      
+ "ver": "201863484150"
 }
 ```
 The responseof the API call is shown below:
 
 ```json
 
-{'descr': 'None', 'source': 'trueplm18262775133753724042.sample', 'contentType': 'None', 'discipline': 'None', 'projPhase': 'None', 'status': 'None', 'editor': 'None', 'resp': 'None', 'rev': 'None', 'app': 'None', 'revMan': 'None', 'title': 'sample'}
+{"descr": "None", "source": "trueplm18262775133753724042.sample", "contentType": "None", "discipline": "None", "projPhase": "None", "status": "None", "editor": "None", "resp": "None", "rev": "None", "app": "None", "revMan": "None", "title": "sample"}
 ```
 
 ### Step 2: Return file data for download
@@ -455,34 +455,34 @@ Below is the JSON resposne from the document quick search method.
 
 ```json
     {
-    'doc_info': {
-      'instance_id': 201863484019,
-      'ass_doc_instance_id': 201863484089,
-      'file_body_id': 201863483776,
-      'size': 49672,
-      'linked_to_others': False,
-      'id': '3f3yM05ReHxu000FzqhB2l',
-      'description': 'test',
-      'linked_to_bkdn_elem_instance': 201863484065,
-      'versions': [
+    "doc_info": {
+      "instance_id": 201863484019,
+      "ass_doc_instance_id": 201863484089,
+      "file_body_id": 201863483776,
+      "size": 49672,
+      "linked_to_others": False,
+      "id": "3f3yM05ReHxu000FzqhB2l",
+      "description": "test",
+      "linked_to_bkdn_elem_instance": 201863484065,
+      "versions": [
         {
-          'instance_id': 201863484019,
-          'version_id': '1.001',
-          'changes_description': 'First version',
-          'status': 'urn:rdl:epm-std:Approved',
-          'date_submitted': '2024-05-19 08:36:39',
-          'submitted_by_user': 'jotne_rc',
-          'sticky_notes': [
+          "instance_id": 201863484019,
+          "version_id": "1.001",
+          "changes_description": "First version",
+          "status": "urn:rdl:epm-std:Approved",
+          "date_submitted": "2024-05-19 08:36:39",
+          "submitted_by_user": "jotne_rc",
+          "sticky_notes": [
             
           ],
-          'affects_documents': [
+          "affects_documents": [
             
           ],
-          'affected_by_documents': [
+          "affected_by_documents": [
             
           ],
-          'phase': 'urn:rdl:epm-std:0',
-          'approval': 'None'
+          "phase": "urn:rdl:epm-std:0",
+          "approval": "None"
         }
       ]}
     }
