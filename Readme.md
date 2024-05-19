@@ -48,16 +48,8 @@ The API includes the following methods: `POST`, `GET`, `DELETE`, and `PUT` metho
 
 This document provides several examples illustrating how to utilize API methods using Python. In these examples, the STEP file `Palfinger_Crane_Assembly_pdm.zip` is employed, and it will be imported into the EDMtruePLM web application as a project identified as `Palfinger_Crane_Assembly`. All the API methods discussed will target this specific project.
 
-The required libraries to be installed for running the examples are shown below:
+The required python libraries to be installed for running the examples are found in requriments.txt.use the command pip install -r requirements.txt
 
-```python
-import requests
-import sys
-import json
-import pprint
-from pathlib import Path
-pp = pprint.PrettyPrinter()
-```
 ---
 
 ## 1. API Call for Generating Token
