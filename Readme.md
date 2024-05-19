@@ -118,11 +118,11 @@ In the [`generating_token.py`](/generating_token.py) script, users can find the 
 
 The API endpoint for creating a new project is:`POST: /api/adm_user/{token}`
 
-In the Python script `create_new_project.py`, users will find the necessary code to perform this operation. This script uses the file `Palfinger_Crane_Assembly_pdm.zip` as input for creating a new project. Users are encouraged to substitute their own STEP file to tailor the project creation to their specific needs.
+In the Python script [`create_new_project.py`](/create_new_project.py), users will find the necessary code to perform this operation. This script uses the file `Palfinger_Crane_Assembly_pdm.zip` as input for creating a new project. Users are encouraged to substitute their own STEP file to tailor the project creation to their specific needs.
 
 Below is an image showing the project as imported after the API execution:
 
-![project_import](images/project_import.png)
+![project_import](images/project_import.PNG)
 
 
 ## 3. API call for retrieving the project's root break down element
@@ -140,7 +140,7 @@ This method requires two key input parameters:
 
 ### Description
 
-When invoked, this API call returns the root breakdown element information for the specified project, providing essential details about the project's structure in EDMtruePLM.In the Pythonscript `project_root_bkd_element.py`, users will find the necessary code to perform this operation.
+When invoked, this API call returns the root breakdown element information for the specified project, providing essential details about the project's structure in EDMtruePLM.In the Pythonscript [`project_root_bkd_element.py`](/project_root_bkd_element.py), users will find the necessary code to perform this operation.
 
 
 ## 4. API call for creating new breakdown element
@@ -163,7 +163,7 @@ In this API method, the user needs to specify a path in the form of a node ID. T
 
 - **Instance ID Caution**: Instance IDs should not be considered permanent identifiers, as they may change during operations such as cut/paste and export/import within the project.
 
-In the Pythonscript `create_new_bkd_element.py`, users will find the necessary code to perform this operation.
+In the Pythonscript [`create_new_bkd_element.py`](/create_new_bkd_element.py), users will find the necessary code to perform this operation.
 
 ---
 ## 5.API Calls for Breakdown Elements Quick Search
@@ -186,7 +186,7 @@ These API methods facilitate the search of breakdown elements within a project, 
   
 ### General Usage Notes
 
-In the Python script `bkd_element_quick_search.py`, users will find the necessary code to perform this operation using the following search parameters:
+In the Python script [`bkd_element_quick_search.py`](/bkd_element_quick_search.py), users will find the necessary code to perform this operation using the following search parameters:
 
 For a comprehensive list of available search parameters and detailed API documentation, please refer to Swagger page.
 
@@ -241,7 +241,7 @@ search_params = {
 ### Output
 The output of this function provides detailed attributes of the required breakdown element or all elements satisfying the query, depending on the presence or absence of the `nodeID` parameter.
 
-In the Python script `bkd_element_advanced_search.py`, users will find the necessary code to perform this operation.
+In the Python script [`bkd_element_advanced_search.py`](/bkd_element_advanced_search.py), users will find the necessary code to perform this operation.
 
 ---
 ## 7.API call for deleting breakdown element
@@ -255,7 +255,7 @@ In the below image the user want to delete the **SENSORS 2** breakdown element.
 ![delete_element](images/delete_element.png)
 
 
-In the Python script `delete_bd_element.py`, users will find the necessary code to perform this operation.
+In the Python script [`delete_bd_element.py`](/delete_bd_element.py), users will find the necessary code to perform this operation.
 
 ---
 
@@ -304,7 +304,7 @@ By following these steps, users can effectively manage and customize Breakdown e
 #### 2. Update User-Defined Properties
 After the Breakdown element is established with the required type, users can then proceed to update the element with corresponding values. It's crucial to ensure the correct units are used when uploading values to each property.
 
-In the Python script `update_bkd_element_properties.py`, users will find the necessary code to perform this operation.
+In the Python script [`update_bkd_element_properties.py`](/update_bkd_element_properties.py), users will find the necessary code to perform this operation.
 
 #### The quick search method can be used to obtain information on the user defined breakdown properties.
 
@@ -319,8 +319,7 @@ Returns information about the children of a breakdown element with pagination op
 ### Description
 This method retrieves specific breakdown element within the project, or it can be used to obtain detailed information about child elements in a hierarchical tree structure.
 
-
-In the Python script `get_bkd_children.py`, users will find the necessary code to perform this operation.
+In the Python script [`get_bkd_children.py`](/get_bkd_children.py), users will find the necessary code to perform this operation.
 
 ---
 ## 10.API call for uploading Aggregate data to a breakdown element
@@ -341,15 +340,14 @@ From version 3.6, to filter data using the DATE format, the UNIX millisecond for
 
 Uploads data in CSV format to define the aggregate properties for a specific breakdown element. Similar to the JSON upload, if the DATE format is used as a key field in defining the aggregate, the specified date and time format must be adhered to. This format is necessary for the data upload.
 
-
 ### Usage
 
-In the python script `upload_aggregrate_data.py` provides an example for uploading a JSON formatted acceleration `sensor data to the **SENSORS** breakdown element wiht property `acceleration_readings`. The corresponding JSON file is `Accleration_readings_data.json`.
+In the python script [`upload_aggregrate_data.py`](/upload_aggregrate_data.py) provides an example for uploading a JSON formatted acceleration sensor data to the **SENSORS** breakdown element with property `acceleration_readings`. The corresponding JSON file is [`Accleration_readings_data.json`](/files/Accleration_readings_data.json).
  
  In the image below shows the final result of the upload with **2 items**.
  
  ![Aggregate Structure upload](images/bkd_el_properties/aggregate_data.png)
- 
+
 ---
 
 ## 11.API call to Export aggregate data from breakdown elements 
@@ -357,8 +355,7 @@ In the python script `upload_aggregrate_data.py` provides an example for uploadi
 `GET /api/bkd/aggr_exp_dt/{repository}/{model}/{node}/{prop}/{token} `
 Export the values of the aggregated property with paging and filtering to the JSON or CSV format.
 
-In the python script `export_aggr_exp_dt_method.py` provides the example to retrive the **SENSORS** breakdown element aggregate data in JSON format.
-
+In the python script [`export_aggr_exp_dt_method.py`](/export_aggr_exp_dt_method.py) provides the example to retrive the **SENSORS** breakdown element aggregate data in JSON format.
 
 ### The other way to exporting aggregate data is 
 
@@ -395,7 +392,6 @@ Timestamp,X,Y,Z
 2023-04-11 06:31:05,12,-4,8
 2023-04-11 06:31:06,9,7,-9
 ```
-
 The example for output resposne in JSON  format is shown below 
 ```json
 [{"Timestamp":"2023-04-11 06:31:04","X":"0","Y":"-6","Z":"-9"},
@@ -410,7 +406,7 @@ The method used for uploading a file to a breakdown element is:`POST /api/dat/{r
 
 In the API method node parameter specifies the required breakdown element location under which the required file need to be uploaded.
 
-The below figure shows the result of `uploading_document.py` where the sample.pdf has been uploaded the required file.
+The below figure shows the result of [`uploading_document.py`](/uploading_document.py) where the [`sample.pdf`](/files/sample.pdf) has been uploaded the required file.
 
 ![Aggregate Structure upload](images/bkd_el_properties/bkd_upload_file.png)
 
@@ -439,7 +435,6 @@ This API method requires the following query parameters to download a required f
      'ver': '201863484150'  # Instance ID of document version
    }
 ```
-
 The responseof the API call is shown below:
 
 ```json
@@ -473,8 +468,8 @@ This method is used to delete specific documents within a project. It requires t
 
 ### Obtaining Document Instance ID
 The `ass_doc_instance_id` can be retrieved using one of the following search methods:
-- **Document Quick Search**: Allows for fast retrieval of document details including instance IDs.`document_quick_search_method.py`.
-- **Advanced Document Search**: Provides a more detailed search capability to find specific documents based on various criteria.`document_advanced_search_method.py`
+- **Document Quick Search**: Allows for fast retrieval of document details including instance IDs.[`document_quick_search_method.py`](/document_quick_search_method.py)
+- **Advanced Document Search**: Provides a more detailed search capability to find specific documents based on various criteria.[`document_advanced_search_method.py`](/document_advanced_search_method.py)
 
 Below is the JSON resposne from the document quick search method.
 
@@ -517,7 +512,7 @@ To delete a document, provide its instance ID along with the repository, model, 
 
 ### Example Request
 
-The below figure shows the result of `delete_document.py` where the sample.pdf has been deleted with the API call.
+The below figure shows the result of [`delete_document.py`](/delete_document.py) where the **sample.pdf** has been deleted with the API call.
 
 
 
