@@ -53,7 +53,7 @@ def get_token():
         return f"HTTP error occurred: {e.response.status_code} - {e.response.text}"
     except requests.exceptions.RequestException as e:
         return f"Request failed: {e}"
-
+    return None
 
 def main():
     token = get_token()

@@ -408,7 +408,7 @@ The below figure shows the result of [`uploading_document.py`](/uploading_docume
 ![Aggregate Structure upload](images/bkd_el_properties/bkd_upload_file.png)
 
 ---
-## 14.API call for Document from Breakdown elements
+## 13.API call for downloading Document from Breakdown elements
 
 ### Document File Download Process
 
@@ -449,7 +449,21 @@ after obtaining file properties, user can download the file:
 
 ### Example Request
 
-The python file`document_download.py` provide required example.
+The python file[`document_download.py`](/document_download.py) provide required example.
+
+**Note**: An additional API method allows for file downloading with a single API call, as outlined below:
+`POST /api/dat/file/body/{repository}/{model}/{node}/{token}`
+
+#### Usage
+ This API method supports the following query parameters. The use_inline parameter controls the CONTENT_DISPOSITION behavior. When set to "inline", it allows the file to be rendered directly in the browser, assuming the browser supports the file's content type. Otherwise, when set to "false", the file is treated as a downloadable item.
+```json
+{    
+ "name": "sample",      
+ "ver": "201863484150",
+ "use_inline":"false"
+}
+```
+This configuration specifies that the file should be prepared for download rather than inline viewing.The example can be found in [`document_download_inline.py`](/document_download_inline.py)
 
 ---
 ## 14.API call for Deleting Document in Breakdown elements

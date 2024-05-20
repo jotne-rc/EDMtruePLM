@@ -14,11 +14,11 @@ def download_file(file_prop, token):
         response.raise_for_status()
         return response.content if response.ok else None
     except requests.exceptions.Timeout:
-        return "Request timed out"
+        print (f"Request timed out")
     except requests.exceptions.HTTPError as e:
-        return f"HTTP error occurred: {e.response.status_code} - {e.response.text}"
+        print (f"HTTP error occurred: {e.response.status_code} - {e.response.text}")
     except requests.exceptions.RequestException as e:
-        return f"Request failed: {e}"
+        print (f"Request failed: {e}")
 
 def prepare_file_for_download(data_param, model, token, repository="TruePLMprojectsRep"):
     url_download_file = f"{PLM_URL}/api/dat/file/link/{repository}/{model}/{token}"
@@ -27,11 +27,12 @@ def prepare_file_for_download(data_param, model, token, repository="TruePLMproje
         response.raise_for_status()
         return response.json() if response.ok else None
     except requests.exceptions.Timeout:
-        return "Request timed out"
+        print (f"Request timed out")
     except requests.exceptions.HTTPError as e:
-        return f"HTTP error occurred: {e.response.status_code} - {e.response.text}"
+        print (f"HTTP error occurred: {e.response.status_code} - {e.response.text}")
     except requests.exceptions.RequestException as e:
-        return f"Request failed: {e}"
+        print (f"Request failed: {e}")
+    return None    
 
 def main():
     token = get_token()

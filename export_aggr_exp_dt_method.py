@@ -25,7 +25,7 @@ def download_aggr_data(model, node, prop, data_params, token, repository="TruePL
         return f"HTTP error occurred: {e.response.status_code} - {e.response.text}"
     except requests.exceptions.RequestException as e:
         return f"Request failed: {e}"
-    
+    return None
 
 def main():
     model = "Palfinger_Crane_Assembly"

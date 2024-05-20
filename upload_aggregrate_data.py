@@ -42,12 +42,13 @@ def upload_data(file_path, data_format, model, node, prop, token, repository="Tr
             response = requests.post(full_url, headers=headers, files={"file": file}, timeout=30.0)
             response.raise_for_status()
             return response.json() if response.ok else None
-    except requests.exceptions.Timeout:
-        return "Request timed out"
     except requests.exceptions.HTTPError as e:
-        return f"HTTP error occurred: {e.response.status_code} - {e.response.text}"
+        print(f'HTTP error occurred: {e.response.status_code} - {e.response.reason}')
+    except requests.exceptions.Timeout:
+        print('Request timed out')
     except requests.exceptions.RequestException as e:
-        return f"Request failed: {e}"
+        print(f'Request failed: {e}')
+    return None
 
 def main():
     file_path = r'files/Accleration_readings_data.json'
