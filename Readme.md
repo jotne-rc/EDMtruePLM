@@ -383,7 +383,7 @@ The below figure shows the result of [`uploading_document.py`](/uploading_docume
 ![Aggregate Structure upload](images/bkd_el_properties/bkd_upload_file.png)
 
 ---
-## 14.API call for Document from Breakdown elements
+## 13.API call for Document from Breakdown elements
 
 ### Document File Download Process
 
