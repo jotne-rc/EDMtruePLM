@@ -139,7 +139,7 @@ In the Python script [`create_new_project.py`](/create_new_project.py), users wi
 
 Below is an image showing the project as imported after the API execution:
 
-![project_import](images/project_import.PNG)
+![project_import](images/project_import.png)
 
 
 ## 3. API call for retrieving the project"s root break down element
