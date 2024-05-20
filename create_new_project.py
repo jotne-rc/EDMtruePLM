@@ -15,12 +15,13 @@ def create_new_project(data_param, file_path, token):
             response = requests.post(url, files=files, data=data_param, timeout=30.0)
             response.raise_for_status()
             return response.json() if response.ok else None
-        except requests.exceptions.Timeout:
-            return "Request timed out"
         except requests.exceptions.HTTPError as e:
-            return f"HTTP error occurred: {e.response.status_code} - {e.response.text}"
+            print(f'HTTP error occurred: {e.response.status_code} - {e.response.text}')
+        except requests.exceptions.Timeout:
+            print('Request timed out')
         except requests.exceptions.RequestException as e:
-            return f"Request failed: {e}"
+            print(f'General Request failed: {e}')
+        return None
 
 
 def main():

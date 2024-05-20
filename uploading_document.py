@@ -19,13 +19,13 @@ def upload_file(file_path, data_param, model, node, repository="TruePLMprojectsR
             response = requests.post(url, files={"file": file_to_upload}, data=data_param, timeout=25.0)
             response.raise_for_status()  # Will raise an exception for HTTP error responses
             return response.json()
-    except requests.exceptions.Timeout:
-        return "Request timed out"
     except requests.exceptions.HTTPError as e:
-        return f"HTTP error occurred: {e.response.status_code} - {e.response.text}"
+        print(f'HTTP error occurred: {e.response.status_code} - {e.response.text}')
+    except requests.exceptions.Timeout:
+        print('Request timed out')
     except requests.exceptions.RequestException as e:
-        return f"Request failed: {e}"
-    
+        print(f'General Request failed: {e}')
+    return None
 
 def main():    
         
