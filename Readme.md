@@ -117,7 +117,7 @@ Below is an image showing the project as imported after the API execution:
 ![project_import](images/project_import.PNG)
 
 
-## 3. API call for retrieving the project"s root break down element
+## 3. API call for retrieving the project's root break down element
 
 The API endpoint to retrieve the root breakdown element in a project is:
 
@@ -302,7 +302,7 @@ In the Python script [`get_bkd_children.py`](/get_bkd_children.py), users will f
 
 Uploads data in JSON format to the defined the aggregate property struct of a breakdown element. When defining aggregates, if the key field is set to the DATE format, the specified date and time format must be used (as shown in Figure date format). This format is crucial when uploading the data.
 
-### Notes
+### Note
 
 From version 3.6, to filter data using the DATE format, the UNIX millisecond format (e.g., 1686029024000) is required.
 
@@ -329,11 +329,11 @@ Export the values of the aggregated property with paging and filtering to the JS
 
 In the python script [`export_aggr_exp_dt_method.py`](/export_aggr_exp_dt_method.py) provides the example to retrive the **SENSORS** breakdown element aggregate data in JSON format.
 
-### The other way to exporting aggregate data is 
+### The other way to exporting aggregate data is :
 
 1.`GET1 /api/bkd/aggr_exp/{repository}/{model}/{node}/{prop}/{token}`Export the values of the aggregated property with paging and filtering to the JSON format
 
-2`.GET /api/dat/file/data/{src}/{name}/{token}`Return file data for download
+2.`GET /api/dat/file/data/{src}/{name}/{token}`Return file data for download
 
 The first method takes inputs parameters to get data in required format either CSV or JSON . This method will generate 
 file properties as shown in below example.
@@ -355,7 +355,7 @@ file properties as shown in below example.
 ```
 The source and title values are supplied to the second API function from this response.
 
-The example for output response in csv format is shown below 
+The example for output response in csv format is shown below
 
 ```csv
 Timestamp,X,Y,Z
@@ -395,7 +395,6 @@ The process involves two main steps:
 1. Prepare file for the download.
 2. Return file data for download.
 
-
 ### Step 1: Prepare File for the Download
 
 `GET /api/dat/file/link/{repository}/{model}/{token}` 
@@ -413,12 +412,11 @@ The responseof the API call is shown below:
 
 {"descr": "None", "source": "trueplm18262775133753724042.sample", "contentType": "None", "discipline": "None", "projPhase": "None", "status": "None", "editor": "None", "resp": "None", "rev": "None", "app": "None", "revMan": "None", "title": "sample"}
 ```
-
 ### Step 2: Return file data for download
 
 after obtaining file properties, user can download the file:
 
-`GET /api/dat/file/data/{src}/{name}/{token}` 
+`GET /api/dat/file/data/{src}/{name}/{token}` which translates to 
 
 `/api/dat/file/data/trueplm18262775133753724042.sample/sample/5V7AX7OE9TMV3AAAJI`
 
@@ -486,5 +484,28 @@ To delete a document, provide its instance ID along with the repository, model, 
 
 The below figure shows the result of [`delete_document.py`](/delete_document.py) where the **sample.pdf** has been deleted with the API call.
 
+---
+## 15.API call for Filtering the aggregate data
 
+### Endpoint
 
+`GET /api/bkd/aggr/{repository}/{model}/{node}/{prop}/{token}`
+
+This API method can utilized to filter the aggregate data in reverse order with paging and filtering with below query parameters.
+
+```json
+{
+    'from': "First value of the key for filtering. The number of milliseconds has to be used in case of 'Date' type of the key field with specified date format",        
+    'to': "Last value of the key for filtering. The number of milliseconds has to be used in case of 'Date' type of the key field with specified date format",
+    'page':"1",         
+    'size':"1",
+    'reverse_order':"true"
+} 
+```
+
+The output of the JSON response is shown below and the python code can be
+found in the [`get_aggr_data.py`](/get_aggr_data.py)
+
+```json
+ {'urn': 'urn:rdl:Palfinger_Crane_Assembly:acceleration_readings', 'columns': [{'name': 'urn:rdl:Palfinger_Crane_Assembly:timime', 'units': 'None', 'AVG': 0.0}, {'name': 'urn:rdl:Treeadsestamp', 'types': 'urn:plcs:rdl:std:Date_time', 'units': 'None', 'AVG': 0.0}, {'name': 'urn:rdl:Palfinger_Crane_Assembly:x', 'types': 'urn:plcstypes': 'urn:plcs:rdl:TruePLM:Numeric_value', 'units': 'urn:rdl:TruePLM:Numeric_value', 'units': 'urn:rdl:Palfinger_Crane_Assembly:m/s2', 'AVG': 0.0}, {'name': 'urn:rdl:Palfinger_Crane_Assembly:y', 't', 'AVG': 0.0}], 'values': ['1716299280000,45.0,3.634446105ypes': 'urn:plcs:rdl:TruePLM:Numeric_value', 'units': 'urn:rdl:Palfinger_Crane_Assembly:m/s2', 'AVG': 0.0}, {'name': 'urn:rdl:Palfinger_Crane859.0', '1713534360000,42.3591268961589,3.63444610512991,85_Assembly:z', 'types': 'urn:plcs:rdl:TruePLM:Numeric_value', 'units': 'urn:rdl:Palfinger_Crane_Assembly:m/s2', 'AVG': 0.0}], 'values': ['1677763032071,-.7,0.029999999329447746,-0.3499999940395355'], 'page_number': 1, 'page_size': 1, 'rows': 7}
+ ```

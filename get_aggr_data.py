@@ -2,16 +2,12 @@
 from generating_token import get_token,plm_info
 import requests
 
-'''
-This method is available from PLM version 3.5.x.x and this gives us the data export options in either CSV or JSON format and reduces the  need for 
-using multiple API methods to export data.
 
-/api/bkd/aggr_exp_dt/{repository}/{model}/{node}/{prop}/{token} Export the values of the aggregated property with paging and filtering to the JSON format
-'''
 
-#####################  downloading sensor data  ###################### 
-def download_aggr_data(model, node, prop, data_params, token, repository="TruePLMprojectsRep"):
-    endpoint = f"/api/bkd/aggr_exp_dt/{repository}/{model}/{node}/{prop}/{token}"
+#####################  Retriving sensor data  ###################### 
+
+def get_aggr_data(model, node, prop, data_params, token, repository="TruePLMprojectsRep"):
+    endpoint = f"/api/bkd/aggr/{repository}/{model}/{node}/{prop}/{token}"
     get_filtered_data_url = plm_info['url'] + endpoint
     print("\nRequesting data from:", get_filtered_data_url)
 
@@ -31,17 +27,18 @@ def download_aggr_data(model, node, prop, data_params, token, repository="TruePL
 def main():
     model = "Palfinger_Crane_Assembly"
     prop = f"urn:rdl:{model}:acceleration_readings"  
-    node = "201863476589"
+    node = "201863468815"
     data_params = {
         'from': "",        # UNIX timestamp with milliseconds
         'to': "",
-        'format': 'json',  # csv or json
-        'cols': []         # filter cols ['x','z']
+        'page':"1",         
+        'size':"1",
+        'reverse_order':"true"
     }
 
     token = get_token()
     if token:
-        response = download_aggr_data(model, node, prop, data_params, token)
+        response = get_aggr_data(model, node, prop, data_params, token)
         if response:
             print("Data downloaded:", response)
     else:
