@@ -537,11 +537,11 @@ This API method can utilized to filter the aggregate data in reverse order with 
 
 ```json
 {
-    'from': "First value of the key for filtering. The number of milliseconds has to be used in case of 'Date' type of the key field with specified date format",        
-    'to': "Last value of the key for filtering. The number of milliseconds has to be used in case of 'Date' type of the key field with specified date format",
-    'page':"1",         
-    'size':"1",
-    'reverse_order':"true"
+   "from": "First value of the key for filtering. The number of milliseconds has to be used in case of "Date" type of the key field with specified date format",        
+    "to": "Last value of the key for filtering. The number of milliseconds has to be used in case of "Date" type of the key field with specified date format",
+    "page":"1",         
+    "size":"1",
+    "reverse_order":"true"
 } 
 ```
 
