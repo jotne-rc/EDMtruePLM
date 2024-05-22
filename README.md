@@ -321,7 +321,7 @@ In the Python script [`get_bkd_children.py`](/get_bkd_children.py), users will f
 ---
 ## 10.API call for uploading Aggregate data to a breakdown element
 
-`POST /api/bkd/aggr_json/{repository}/{model}/{node}/{prop}/{token}`
+`POST /api/bkd/aggr/{repository}/{model}/{node}/{prop}/{token}`
 
 ### Description
 
