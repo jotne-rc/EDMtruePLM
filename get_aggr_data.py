@@ -1,5 +1,5 @@
 
-from generating_token import get_token,plm_info
+from generating_token import get_token,plm_info,headers
 import requests
 
 
@@ -12,7 +12,7 @@ def get_aggr_data(model, node, prop, data_params, token, repository="TruePLMproj
     print("\nRequesting data from:", get_filtered_data_url)
 
     try:
-        response = requests.get(get_filtered_data_url, params=data_params, timeout=30.0)
+        response = requests.get(get_filtered_data_url,headers=headers, params=data_params, timeout=30.0)
         response.raise_for_status()
         return response.json() if response.ok else None
     except requests.exceptions.HTTPError as e:
