@@ -25,8 +25,8 @@ def get_token():
     return None
 
 
-def get_baseline_ddi_spreadsheet(token):
-    target = f"{config['server']}/{config['ddi_export_url']}/{config["repository"]}/{config["model"]}/TDP_init"
+def get_baseline_ddi_spreadsheet(token, model, baseline_id):
+    target = f"{config['server']}/{config['ddi_export_url']}/{config["repository"]}/{model}/{baseline_id}"
 
     headers = {
     'Authorization': token
@@ -44,10 +44,11 @@ def get_baseline_ddi_spreadsheet(token):
 
 if __name__ == "__main__":
     target_model = 'test_remove_files' # note that "model" is equivalent to project 
+    baseline_id = "TDP_init"
 
     token = get_token()
 
     # ddi export api call - a file will be created in the running directory 
-    get_baseline_ddi_spreadsheet(token)
+    get_baseline_ddi_spreadsheet(token, target_model, baseline_id)
     
     
