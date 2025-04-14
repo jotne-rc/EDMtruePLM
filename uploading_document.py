@@ -1,4 +1,4 @@
-from generating_token import get_token, plm_info, headers
+from generating_headers import plm_info, headers
 import requests
 
 def upload_file(file_path, data_param, model, node, repository="TruePLMprojectsRep"):
@@ -6,12 +6,8 @@ def upload_file(file_path, data_param, model, node, repository="TruePLMprojectsR
     Uploads a file to the specified node in the model within the repository.
     Handles various file types like excel, pdf, word, images.
     """
-    token = get_token()
-    if not token:
-        print("Failed to retrieve token.")
-        return None
-
-    url = f"{plm_info['url']}/api/dat/{repository}/{model}/{node}/{token}"
+   
+    url = f"{plm_info['url']}/api/dat/{repository}/{model}/{node}"
     print(f"\nPerforming request: {url}")
     
     try:
@@ -56,6 +52,5 @@ def main():
     if (data):
         print(data)
            
-
 if __name__ == "__main__":
     main()

@@ -1,20 +1,19 @@
 import requests
-from generating_token import get_token, plm_info, headers
+from generating_headers import plm_info, headers
 
-def doc_quick_search(data_param: dict, model: str, token: str, repository: str = "TruePLMprojectsRep") -> dict:
+def doc_quick_search(data_param: dict, model: str, repository: str = "TruePLMprojectsRep") -> dict:
     """
     Perform a quick search for documents in a project using specific search parameters.
 
     Args:
     data_param (dict): Parameters for document search.
     model (str): Project name.
-    token (str): Authentication token.
     repository (str): Repository name, defaults to 'TruePLMprojectsRep'.
 
     Returns:
     dict: JSON response from the server if the request is successful, None otherwise.
     """
-    doc_search_url = f"{plm_info['url']}/api/dat/q_search/{repository}/{model}/{token}"
+    doc_search_url = f"{plm_info['url']}/api/dat/q_search/{repository}/{model}"
     print(f"\nPerforming request: {doc_search_url}")
 
     try:
@@ -41,15 +40,11 @@ def main():
         'props': ''
     }
 
-    token = get_token()
-    if token:
-        search_result = doc_quick_search(data_param, model, token)
-        if search_result:
-            print(search_result)
-        else:
-            print("No results found or an error occurred.")
+    search_result = doc_quick_search(data_param, model)
+    if search_result:
+        print(search_result)
     else:
-        print("Failed to retrieve token.")
+        print("No results found or an error occurred.")
 
 if __name__ == '__main__':
     main()

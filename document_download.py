@@ -1,12 +1,12 @@
 import requests
 from pathlib import Path
-from generating_token import get_token, plm_info, headers
+from generating_headers import plm_info, headers
 
 PLM_URL = plm_info['url'] 
 
-def download_file(file_prop, token):
+def download_file(file_prop):
     source, title = file_prop['source'], file_prop['title']
-    download_data_url = f"{PLM_URL}/api/dat/file/data/{source}/{title}/{token}"
+    download_data_url = f"{PLM_URL}/api/dat/file/data/{source}/{title}"
     print(f"\nPerforming request: {download_data_url}")
 
     try:
@@ -20,8 +20,8 @@ def download_file(file_prop, token):
     except requests.exceptions.RequestException as e:
         print (f"Request failed: {e}")
 
-def prepare_file_for_download(data_param, model, token, repository="TruePLMprojectsRep"):
-    url_download_file = f"{PLM_URL}/api/dat/file/link/{repository}/{model}/{token}"
+def prepare_file_for_download(data_param, model, repository="TruePLMprojectsRep"):
+    url_download_file = f"{PLM_URL}/api/dat/file/link/{repository}/{model}"
     try:
         response = requests.get(url_download_file, headers=headers, params=data_param, timeout=2.0)
         response.raise_for_status()
@@ -35,24 +35,21 @@ def prepare_file_for_download(data_param, model, token, repository="TruePLMproje
     return None    
 
 def main():
-    token = get_token()
-    if token:
-        doc_data_param = {'name': 'sample', 'ver': '201863484150'}
-        file_properties = prepare_file_for_download(doc_data_param, "Palfinger_Crane_Assembly", token)
-        print(file_properties)
-        if file_properties:
-            file_data = download_file(file_properties, token)
-            if file_data:
-                required_filename = Path('files/downloaded_sample.pdf')
-                with required_filename.open('wb') as file:
-                    file.write(file_data)
-                print('The file has been downloaded successfully.')
-            else:
-                print('Failed to download file data.')
+    
+    doc_data_param = {'name': 'sample', 'ver': '201863484150'}
+    file_properties = prepare_file_for_download(doc_data_param, "Palfinger_Crane_Assembly")
+    print(file_properties)
+    if file_properties:
+        file_data = download_file(file_properties)
+        if file_data:
+            required_filename = Path('files/downloaded_sample.pdf')
+            with required_filename.open('wb') as file:
+                file.write(file_data)
+            print('The file has been downloaded successfully.')
         else:
-            print('Failed to retrieve file properties.')
+            print('Failed to download file data.')
     else:
-        print('Failed to retrieve token.')
-
+        print('Failed to retrieve file properties.')
+    
 if __name__ == '__main__':
     main()

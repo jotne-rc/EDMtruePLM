@@ -1,15 +1,14 @@
-from generating_token import get_token, plm_info, headers
+from generating_headers import plm_info, headers
 import requests
 import pprint
 
 
-def create_new_project(data_param, file_path, token):
+def create_new_project(data_param, file_path):
     """Create a new project by uploading a STEP file."""
 
-    url = f"{plm_info['url']}/api/adm_user/{token}"
+    url = f"{plm_info['url']}/api/adm_user"
     print(f"\nPerforming request: {url}")
 
-    
     with open(file_path, 'rb') as file:
         files = {'file': file}
         try:
@@ -39,17 +38,14 @@ def main():
     
     file_path = r'files/Palfinger_Crane_Assembly_pdm.zip'
 
-    token= get_token()   # generating token
 
-    if token:
-        new_project_information = create_new_project(parameters , file_path, token)
-        if new_project_information:
-            pp = pprint.PrettyPrinter()
-            pp.pprint(new_project_information)
-        else:
-            print("Failed to create new project")
+    new_project_information = create_new_project(parameters , file_path)
+    if new_project_information:
+        pp = pprint.PrettyPrinter()
+        pp.pprint(new_project_information)
     else:
-        print("Failed to retrieve token")
+        print("Failed to create new project")
+    
 
 
 if __name__ == '__main__':

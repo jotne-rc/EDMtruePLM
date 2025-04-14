@@ -1,16 +1,15 @@
-from generating_token import get_token, plm_info, headers
+from generating_headers import plm_info, headers
 import requests
 
 PLM_URL = plm_info['url']  # Ensure this is defined in your generating_token module or config
 
-def bkd_quick_search(model: str, search_type: str, search_params: dict, token: str, repository="TruePLMprojectsRep"):
+def bkd_quick_search(model: str, search_type: str, search_params: dict, repository="TruePLMprojectsRep"):
     """
     Conducts a quick search or an extended quick search on breakdown elements based on the provided parameters.
 
     :param model: Project name.
     :param search_type: Type of search ('q_search' or 'q_search_ext').
     :param search_params: Dictionary of parameters for the search.
-    :param token: Authentication token.
     :param repository: Repository name, defaults to 'TruePLMprojectsRep'.
     :return: JSON response from the API or None if an error occurs.
     """
@@ -18,7 +17,7 @@ def bkd_quick_search(model: str, search_type: str, search_params: dict, token: s
         print('Invalid search type')
         return None
 
-    search_url = f"{PLM_URL}/api/bkd/{search_type}/{repository}/{model}/{token}"
+    search_url = f"{PLM_URL}/api/bkd/{search_type}/{repository}/{model}"
     print(f"\nPerforming request: {search_url}")
 
     try:
@@ -34,22 +33,20 @@ def bkd_quick_search(model: str, search_type: str, search_params: dict, token: s
     return None
 
 def main():
-    token = get_token()  
-    if token:
-        search_params = {
-            "case_sens": "false",
-            "domains": "ID",
-            "folder_only": "true",
-            "pattern": "SENSORS",
-            "node"   : "201863467806"
-        }
-        result = bkd_quick_search('Palfinger_Crane_Assembly', 'q_search', search_params, token)
-        if result:
-            print(result)
-        else:
-            print("No results returned or an error occurred.")
+    
+    search_params = {
+        "case_sens": "false",
+        "domains": "ID",
+        "folder_only": "true",
+        "pattern": "SENSORS",
+        "node"   : "201863467806"
+    }
+    result = bkd_quick_search('Palfinger_Crane_Assembly', 'q_search', search_params)
+    if result:
+        print(result)
     else:
-        print("Failed to retrieve token.")
+        print("No results returned or an error occurred.")
+   
 
 if __name__ == '__main__':
     main()

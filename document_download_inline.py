@@ -1,15 +1,15 @@
 import requests
 from pathlib import Path
-from generating_token import get_token, plm_info, headers
+from generating_headers import plm_info, headers
 
 PLM_URL = plm_info['url']
 
-def file_for_download(data_param, model, token, repository="TruePLMprojectsRep"):
+def file_for_download(data_param, model, repository="TruePLMprojectsRep"):
     """
     Fetches a file from the server based on provided parameters. 
     Handles the response differently based on 'use_inline' parameter in data_param.
     """
-    download_url = f"{PLM_URL}/api/dat/file/body/{repository}/{model}/{token}"
+    download_url = f"{PLM_URL}/api/dat/file/body/{repository}/{model}"
     print(f"Making request to: {download_url}")
 
     try:
@@ -30,22 +30,21 @@ def file_for_download(data_param, model, token, repository="TruePLMprojectsRep")
     return None
 
 def main():
-    token = get_token()
-    if token:
-        doc_data_param = {'name': 'sample', 'ver': '201863484150', 'use_inline': 'true'}
-        file_data = file_for_download(doc_data_param, "Palfinger_Crane_Assembly", token)
-        if file_data:
-            # Save the file if 'use_inline' is 'false'
-            if doc_data_param.get('use_inline', 'true').lower() == 'false':
-                file_path = Path('files/downloaded_file.webm')  # Adjust the extension based on your file type
-                file_path.write_bytes(file_data)
-                print(f"The file has been downloaded and saved to {file_path}")
-            else:
-                print(file_data)
+    
+    
+    doc_data_param = {'name': 'sample', 'ver': '201863484150', 'use_inline': 'true'}
+    file_data = file_for_download(doc_data_param, "Palfinger_Crane_Assembly")
+    if file_data:
+        # Save the file if 'use_inline' is 'false'
+        if doc_data_param.get('use_inline', 'true').lower() == 'false':
+            file_path = Path('files/downloaded_file.webm')  # Adjust the extension based on your file type
+            file_path.write_bytes(file_data)
+            print(f"The file has been downloaded and saved to {file_path}")
         else:
-            print("Failed to download or fetch file data.")
+            print(file_data)
     else:
-        print("Failed to retrieve token.")
+        print("Failed to download or fetch file data.")
+    
 
 if __name__ == '__main__':
     main()

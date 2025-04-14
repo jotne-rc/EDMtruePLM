@@ -1,24 +1,22 @@
-from generating_token import get_token, plm_info, headers
+from generating_headers import plm_info, headers
 import requests
 import pprint
 
-def get_breakdown_element_prop(model: str, node: str, get_prop_data: dict, token: str, repository: str = "TruePLMprojectsRep") -> dict:
+def get_breakdown_element_prop(model: str, node: str, get_prop_data: dict, repository: str = "TruePLMprojectsRep") -> dict:
     """
-    get properties of a breakdown element in the PLM system.
+    get properties of a breakdown element in the PLM and its children.
 
     Args:
     model (str): The name of the model.
     node (str): The instance ID of the breakdown element.
     get_prop_data (dict): Properties to upload.
-    token (str): Authentication token.
     repository (str): Repository name, default is 'TruePLMprojectsRep'.
 
     Returns:
     dict: The server response if the request is successful, None otherwise.
     """
 
-
-    get_prop_url = f"{plm_info['url']}/api/bkd/{repository}/{model}/{node}/{token}"
+    get_prop_url = f"{plm_info['url']}/api/bkd/{repository}/{model}/{node}"
     print(f"\nPerforming request: {get_prop_url}")
 
     try:
@@ -34,21 +32,18 @@ def get_breakdown_element_prop(model: str, node: str, get_prop_data: dict, token
     return None
 
 def main():
-    token = get_token()
-    if token:
-        # Modify this based on the required property data
-        get_prop_data = {
-            "count":100        }
-        model = "Palfinger_Crane_Assembly"
-        node = "201863476589"
-        upload_result = get_breakdown_element_prop(model, node, get_prop_data, token)
-        if upload_result:
-            pp = pprint.PrettyPrinter()
-            pp.pprint(upload_result)
-        else:
-            print("No response or an error occurred.")
+   
+    get_prop_data = {
+        "count":100        } # count number of children to be fetched
+    model = "Palfinger_Crane_Assembly"
+    node = "201863476589"
+    upload_result = get_breakdown_element_prop(model, node, get_prop_data)
+    if upload_result:
+        pp = pprint.PrettyPrinter()
+        pp.pprint(upload_result)
     else:
-        print("Failed to retrieve token.")
+        print("No response or an error occurred.")
+ 
 
 if __name__ == '__main__':
     main()

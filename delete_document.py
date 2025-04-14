@@ -1,7 +1,7 @@
 import requests
-from generating_token import get_token, plm_info, headers
+from generating_headers import plm_info, headers
 
-def doc_delete(ass_doc_instance_id: str, model:str,token: str,repository:str="TruePLMprojectsRep") -> dict:
+def doc_delete(ass_doc_instance_id: str, model:str,repository:str="TruePLMprojectsRep") -> dict:
     """
     Deletes a document from the project based on the document's instance ID.
 
@@ -12,7 +12,7 @@ def doc_delete(ass_doc_instance_id: str, model:str,token: str,repository:str="Tr
     Returns:
     - dict: JSON response from the server if the deletion is successful, None otherwise.
     """
-    del_doc_url = f"{plm_info['url']}/api/dat/{repository}/{model}/{ass_doc_instance_id}/{token}"
+    del_doc_url = f"{plm_info['url']}/api/dat/{repository}/{model}/{ass_doc_instance_id}"
     print(f"\nPerforming request: {del_doc_url}")
     try:
         response = requests.delete(del_doc_url, headers=headers, timeout=2.0)
@@ -27,17 +27,16 @@ def doc_delete(ass_doc_instance_id: str, model:str,token: str,repository:str="Tr
     return None
 
 def main():
-    token = get_token()
+    
     model = "Palfinger_Crane_Assembly"
-    if token:
-        ass_doc_instance_id = "201863484089"  # Document instance ID obtained from search
-        result = doc_delete(ass_doc_instance_id, model, token)
-        if result:
-            print("Document deleted successfully:", result)
-        else:
-            print("Failed to delete document.")
+    
+    ass_doc_instance_id = "201863484089"  # Document instance ID obtained from search
+    result = doc_delete(ass_doc_instance_id, model)
+    if result:
+        print("Document deleted successfully:", result)
     else:
-        print("Failed to retrieve token.")
+        print("Failed to delete document.")
+   
 
 if __name__ == '__main__':
     main()

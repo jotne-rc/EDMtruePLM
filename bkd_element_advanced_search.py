@@ -1,9 +1,9 @@
-from generating_token import get_token, plm_info, headers
+from generating_headers import plm_info, headers
 import requests
 import pprint
 
 # Advanced search for the breakdown element in the project
-def bkd_advanced_search(model: str, search_params: dict, token: str,repository: str="TruePLMprojectsRep") -> dict:
+def bkd_advanced_search(model: str, search_params: dict,repository: str="TruePLMprojectsRep") -> dict:
     """
     Performs an advanced search for breakdown elements based on various attributes.
     
@@ -17,7 +17,7 @@ def bkd_advanced_search(model: str, search_params: dict, token: str,repository: 
     - Dictionary containing search results or None if an error occurs.
     """
     # Construct the search URL
-    search_url = f"{plm_info['url']}/api/bkd/a_search/{repository}/{model}/{token}"
+    search_url = f"{plm_info['url']}/api/bkd/a_search/{repository}/{model}"
     print(f"\nPerforming request: {search_url}")
 
     
@@ -53,17 +53,15 @@ def main():
         "type": ""            # Type pattern to search for
     }
 
-    # Obtain token
-    token = get_token()
-    if token:
-        search_result = bkd_advanced_search("Palfinger_Crane_Assembly", search_params, token)
-        if search_result:
-            pp = pprint.PrettyPrinter()
-            pp.pprint(search_result)
-        else:
-            print("No results found or an error occurred.")
+  
+    
+    search_result = bkd_advanced_search("Palfinger_Crane_Assembly", search_params)
+    if search_result:
+        pp = pprint.PrettyPrinter()
+        pp.pprint(search_result)
     else:
-        print("Failed to retrieve token.")
+        print("No results found or an error occurred.")
+ 
 
 if __name__ == '__main__':
     main()

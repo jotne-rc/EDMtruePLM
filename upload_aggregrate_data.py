@@ -1,11 +1,11 @@
-from generating_token import get_token, plm_info, headers
+from generating_headers import plm_info, headers
 import requests
 
 '''
 The user need to define the aggregate properties for the breakdown element. 
 
-1. POST /api/bkd/aggr_json/{repository}/{model}/{node}/{prop}/{token}  upload data in JSON format
-2. POST /api/bkd/aggr_csv/{repository}/{model}/{node}/{prop}/{token} in upload data in CSV format 
+1. POST /api/bkd/aggr_json/{repository}/{model}/{node}/{prop} upload data in JSON format
+2. POST /api/bkd/aggr_csv/{repository}/{model}/{node}/{prop} in upload data in CSV format 
 
 The example for a JList of JSON format data for uploading is shown below and the aggregate properties are created for the element 
 in PLM to store accelerometer sensor values and it contains timestamp, acceleration in x,y,z directions
@@ -24,12 +24,12 @@ Timestamp,X,Y,Z
 
 '''
 
-def upload_data(file_path, data_format, model, node, prop, token, repository="TruePLMprojectsRep"):
+def upload_data(file_path, data_format, model, node, prop, repository="TruePLMprojectsRep"):
     base_url = plm_info['url']
     if data_format == 'JSON':
-        endpoint = f"/api/bkd/aggr/{repository}/{model}/{node}/{prop}/{token}"
+        endpoint = f"/api/bkd/aggr/{repository}/{model}/{node}/{prop}"
     elif data_format == 'CSV':
-        endpoint = f"/api/bkd/aggr_csv/{repository}/{model}/{node}/{prop}/{token}"
+        endpoint = f"/api/bkd/aggr_csv/{repository}/{model}/{node}/{prop}"
     else:
         print('Invalid data format specified')
         return
@@ -56,11 +56,9 @@ def main():
     model = "Palfinger_Crane_Assembly"
     prop = f"urn:rdl:{model}:acceleration_readings"  
     node = "201863476589"
-    token = get_token()
-
-    if token:
-        upload_result = upload_data(file_path, data_format, model, node, prop, token)
-        print(upload_result)
+   
+    upload_result = upload_data(file_path, data_format, model, node, prop)
+    print(upload_result)
 
 if __name__ == "__main__":
     main()

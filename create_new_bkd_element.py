@@ -1,8 +1,8 @@
-from generating_token import get_token, plm_info, headers
+from generating_headers import plm_info, headers
 import requests
 import pprint
 
-def create_new_bkd_element(node: str, model: str, data_param: dict, token: str, repository="TruePLMprojectsRep"):
+def create_new_bkd_element(node: str, model: str, data_param: dict, repository="TruePLMprojectsRep"):
     """
     Creates a new breakdown element in the EDMtruePLM system.
 
@@ -13,7 +13,7 @@ def create_new_bkd_element(node: str, model: str, data_param: dict, token: str, 
     :param repository: Repository name, defaults to 'TruePLMprojectsRep'.
     :return: JSON response from the API or error message.
     """
-    url = f"{plm_info['url']}/api/bkd/create/{repository}/{model}/{node}/{token}"
+    url = f"{plm_info['url']}/api/bkd/create/{repository}/{model}/{node}"
     print(f"\nPerforming request: {url}")
 
     try:
@@ -32,7 +32,7 @@ def main():
     """
     Main function to handle the process of creating a new breakdown element.
     """
-    node = '201863467806'                    # Node ID - change this based on the required node
+    node = '201863469170'#'201863467806'                    # Node ID - change this based on the required node
     model = 'Palfinger_Crane_Assembly'       # Project name - Chaneg this 
     parameters = {
         'act_timestamp': '',                 # Current time stamp
@@ -42,16 +42,15 @@ def main():
         'tmpl': ''                           # Template name
     }
     
-    token = get_token()
-    if token:
-        new_element = create_new_bkd_element(node, model, parameters , token)
-        if new_element:
-            pp = pprint.PrettyPrinter()
-            pp.pprint(new_element)
-        else:
-            print("Failed to create a new breakdown element.")
+    
+    
+    new_element = create_new_bkd_element(node, model, parameters)
+    if new_element:
+        pp = pprint.PrettyPrinter()
+        pp.pprint(new_element)
     else:
-        print("Failed to retrieve token.")
+        print("Failed to create a new breakdown element.")
+    
 
 if __name__ == '__main__':
     main()
