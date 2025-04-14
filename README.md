@@ -51,8 +51,8 @@ The API includes the following methods: `POST`, `GET`, `DELETE`, and `PUT` metho
 
 This document provides several examples illustrating how to utilize API methods using Python. In these examples, the STEP file `Palfinger_Crane_Assembly_pdm.zip` is employed, and it will be imported into the EDMtruePLM web application as a project identified as `Palfinger_Crane_Assembly`. All the API methods discussed will target this specific project.
 
-## The required python libraries to be installed for running the examples are found in requriments.txt. use the command pip install -r requirements.txt
-
+#### The required python libraries to be installed for running the examples are found in requriments.txt. use the command pip install -r requirements.txt
+---
 ## 1. Using Authorization Header
 
 To interact with the EDMtruePLM REST APIs, a static api_token is now the only required authentication method. The previously used session token mechanism (/api/admin/token) is deprecated and no longer supported.
